@@ -5,8 +5,11 @@
   "description": "Traduction",
   "permissions": ["activeTab"],
   "action": {
-   "default_popup": "popup.html",
+   "default_popup": "extension.html",
    "default_icon": {
+      "16": "./img/icon16.png",
+      "48": "./img/icon48.png",
+      "128": "./img/icon128.png"
    }
   }
 }

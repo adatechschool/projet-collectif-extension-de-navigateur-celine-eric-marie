@@ -26,7 +26,7 @@ async function translateText() {
 }
 
 // Appel initial de la fonction de traduction
-translateText();
+//translateText();
 
 // Sélection du champ de texte
 const inputTranslate = document.getElementById("inputTranslate");
@@ -38,8 +38,14 @@ inputTranslate.addEventListener("keydown", function (event) {
    }
 });
 
+const buttonTranslate = document.getElementById("buttonTranslate");
+buttonTranslate.addEventListener("click", function () {
+   translateText();
+});
+
 // Ajout d'un écouteur d'événement pour le clic sur le bouton de recherche Google
-document.getElementById("inputTranslate").addEventListener("click", function () {
+document.getElementById("googleTranslate").addEventListener("click", function (e) {
+   e.preventDefault();
    const query = document.getElementById("inputTranslate").value;
    if (query) {
       const googleTranslateUrl = `https://translate.google.fr/?sl=auto&tl=fr&text=${encodeURIComponent(query)}`;
