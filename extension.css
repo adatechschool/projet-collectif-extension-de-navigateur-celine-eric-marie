@@ -1,0 +1,34 @@
+.extension{
+   
+   border: 2px;
+   height: auto;
+   width: auto;
+   font-family: fantasy;
+   padding: 20px;
+      border: 2px solid #ed0707;
+      border-radius: 5px;
+      background: linear-gradient(blue, green, orange);
+}
+#inputTranslate {
+   border: 3px solid red;
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+}
+#buttonTranslate{
+border-radius: 20px;
+   cursor: pointer;
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+}
+#buttonTranslate:hover,
+#googleTranslate:hover{
+   background: gray;
+   color: aliceblue;
+}
+#translatedText{
+   border:3px solid rgb(14, 198, 106);
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+}
+#googleTranslate{
+border-radius: 20px;
+   cursor: pointer;
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+}
