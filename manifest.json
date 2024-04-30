@@ -1,0 +1,12 @@
+{
+  "manifest_version": 3,
+  "name": "Traducteur",
+  "version": "1.0.0",
+  "description": "Traduction",
+  "permissions": ["activeTab"],
+  "action": {
+   "default_popup": "popup.html",
+   "default_icon": {
+   }
+  }
+}
