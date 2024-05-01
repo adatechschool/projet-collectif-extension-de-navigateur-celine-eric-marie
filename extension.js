@@ -1,3 +1,5 @@
+let task = "auto"; // Définir une valeur par défaut pour la langue source
+
 async function translateText() {
    try {
       const translate = document.getElementById("inputTranslate").value;
@@ -5,7 +7,7 @@ async function translateText() {
          method: "POST",
          body: JSON.stringify({
             q: translate,
-            source: "auto",
+            source: task,
             target: "fr",
             format: "text",
             api_key: ""
@@ -25,9 +27,6 @@ async function translateText() {
    }
 }
 
-// Appel initial de la fonction de traduction
-//translateText();
-
 // Sélection du champ de texte
 const inputTranslate = document.getElementById("inputTranslate");
 
@@ -41,6 +40,13 @@ inputTranslate.addEventListener("keydown", function (event) {
 const buttonTranslate = document.getElementById("buttonTranslate");
 buttonTranslate.addEventListener("click", function () {
    translateText();
+});
+
+// sélection de langue
+const languageDropdown = document.getElementById("language");
+languageDropdown.addEventListener("change", function () {
+   // Mettre à jour la valeur de la variable task
+   task = languageDropdown.value;
 });
 
 // Ajout d'un écouteur d'événement pour le clic sur le bouton de recherche Google
