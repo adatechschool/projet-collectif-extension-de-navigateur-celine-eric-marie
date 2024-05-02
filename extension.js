@@ -52,3 +52,11 @@ document.getElementById("googleTranslate").addEventListener("click", function (e
       chrome.tabs.create({ url: googleTranslateUrl });
    }
 });
+document.addEventListener('mouseup', function(event) {
+   // Récupérer le texte sélectionné
+   var selectedText = window.getSelection().toString().trim();
+   if (selectedText !== '') {
+       // Traduire le texte sélectionné
+       translateText(selectedText);
+   }
+});
