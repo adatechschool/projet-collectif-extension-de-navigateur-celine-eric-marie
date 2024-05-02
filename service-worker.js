@@ -1,4 +1,4 @@
-/* async function translateText(text, source = "auto", target = "fr") {
+async function translateSelectedText(text, source = "auto", target = "fr") {
    try {
       const res = await fetch("http://localhost:5000/translate", {
          method: "POST",
@@ -18,18 +18,16 @@
 
       const data = await res.json();
       const translatedText = data.translatedText;
-      console.log(translatedText);
+      console.log("appel fonction traduction", translatedText);
    } catch (error) {
       console.error("Une erreur est survenue:", error.message);
    }
-} */
+}
 
-document.body.addEventListener("mouseup", () => {
-   let selectedText = window.getSelection().toString();
-   if (selectedText !== "") {
-      chrome.runtime.sendMessage(
-         { type: "selectedText", text: selectedText },
-         (response) => {console.log(response)}
-      );
-   }
+chrome.contextMenus.create({
+   id: "1",
+   title: "test",
+   contexts: ["selection"],
 });
+
+
