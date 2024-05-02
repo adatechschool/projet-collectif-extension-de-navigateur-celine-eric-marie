@@ -1,14 +1,14 @@
 let task = "auto"; // Définir une valeur par défaut pour la langue source
 
-async function translateText() {
+async function translateText(text, source = "auto", target = "fr") {
    try {
-      const translate = document.getElementById("inputTranslate").value;
+
       const res = await fetch("http://localhost:5000/translate", {
          method: "POST",
          body: JSON.stringify({
-            q: translate,
-            source: task,
-            target: "fr",
+            q: text,
+            source: source,
+            target: target,
             format: "text",
             api_key: ""
          }),
@@ -27,27 +27,45 @@ async function translateText() {
    }
 }
 
+//Input texte à traduire
+const ToTranslateInput = document.getElementById("inputTranslate");
+
+//selection de langages
+const sourceSelect = document.getElementById("source-language");
+const targetSelect = document.getElementById("target-language");
+
 // Sélection du champ de texte
 const inputTranslate = document.getElementById("inputTranslate");
 
 // Ajout d'un écouteur d'événement pour la touche "Entrée"
 inputTranslate.addEventListener("keydown", function (event) {
    if (event.key === "Enter") {
-      translateText();
+      const sourceLanguage = sourceSelect.value;
+      const targetLanguage = targetSelect.value;
+      translateText(ToTranslateInput.value, sourceLanguage, targetLanguage);
    }
 });
 
 const buttonTranslate = document.getElementById("buttonTranslate");
 buttonTranslate.addEventListener("click", function () {
-   translateText();
+   const sourceLanguage = sourceSelect.value;
+   const targetLanguage = targetSelect.value
+   translateText(ToTranslateInput.value, sourceLanguage, targetLanguage);
 });
 
+/*
 // sélection de langue
 const languageDropdown = document.getElementById("language");
 languageDropdown.addEventListener("change", function () {
    // Mettre à jour la valeur de la variable task
    task = languageDropdown.value;
 });
+
+const languageTarget = document.getElementById("target-language");
+languageTarget.addEventListener("change", function () {
+   // Mettre à jour la valeur de la variable target
+   target = languageTarget.value;
+}); */
 
 // Ajout d'un écouteur d'événement pour le clic sur le bouton de recherche Google
 document.getElementById("googleTranslate").addEventListener("click", function (e) {
