@@ -1,45 +1,66 @@
 body {
    height: 60vh;
-   width: 95vw;
+   min-width: 300px;
+   margin: 0;
 }
 
 .extension {
-   border: 0;
    height: auto;
-   width: auto;
+   width: 100%;
+   padding: 2%;
    font-family: fantasy;
-   margin: -10px;
-   padding: 20px;
+   /*margin: -10px;*/
    border: 2px solid rgb(136, 29, 224);
+   box-sizing: border-box;
    border-radius: 5px;
-   background: linear-gradient(blue, green, orange);
-   background: url(https://th.bing.com/th?id=OIP.lSRCv7OeYWihD9DFvkIHawHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=3.8&pid=3.1&rm=2);
+   background: black;
+   /*background: url(https://th.bing.com/th?id=OIP.lSRCv7OeYWihD9DFvkIHawHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=3.8&pid=3.1&rm=2);*/
    display: grid;
-   grid-template-columns: 1fr 1fr 1fr;
-   grid-template-rows: 1fr 1fr 1fr 1fr;
+   grid-template-columns: 2fr 1fr;
+   grid-template-rows: 1.5fr 1fr 1.5fr 1fr;
    grid-template-areas:
-      "task input1 ."
-      ". button ."
-      ". input2 ."
-      "lien lien lien";
-   gap: 10px;
-
+      "source-select input1"
+      ". button"
+      "target-select input2"
+      "lien lien";
+   gap: 10px
 }
-#language {
-   grid-area: task;
+
+
+
+#source-language,
+#target-language {
    width: 75px;
    border: 3px solid rgb(136, 29, 224);
+   border-radius: 25px;
+   background: rgb(252, 243, 226);
+}
+
+#target {
+   grid-area: target-select;
+}
+
+#source {
+   grid-area: source-select;
+}
+
+label {
+   color: white;
+   width: 100%;
 }
 
 #inputTranslate {
    grid-area: input1;
    border: 3px solid rgb(136, 29, 224);
-   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
+   border-radius: 25px;
+   background: rgb(252, 243, 226);
 }
 
 #buttonTranslate {
    grid-area: button;
    background-image: linear-gradient(225deg, #27d86c 0%, #26caf8 50%, #c625d0 100%);
+   border: 0;
    border-radius: 20px;
    cursor: pointer;
    box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
@@ -50,7 +71,7 @@ body {
 
 #buttonTranslate:hover,
 #googleTranslate:hover {
-   background-image: linear-gradient(225deg, #c625d0 0%, #26caf8 50%,#27d86c 100%);
+   background-image: linear-gradient(225deg, #c625d0 0%, #26caf8 50%, #27d86c 100%);
    background-image: linear-gradient(225deg, 0%, #26caf8 50%, #c625d0 100%);
    color: black;
    font-size: 1em;
@@ -59,7 +80,9 @@ body {
 #translatedText {
    grid-area: input2;
    border: 3px solid rgb(136, 29, 224);
-   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
+   border-radius: 25px;
+   background: rgb(252, 243, 226);
 }
 
 #googleTranslate {
