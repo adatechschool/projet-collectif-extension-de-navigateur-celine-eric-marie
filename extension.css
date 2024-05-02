@@ -1,39 +1,152 @@
-.extension{
-   
-   border: 2px;
+body {
+   height: 60vh;
+   min-width: 300px;
+   margin: 0;
+}
+
+.extension {
    height: auto;
-   width: auto;
+   width: 100%;
+   padding: 2%;
    font-family: fantasy;
-   padding: 20px;
-      border: 2px solid #ed0707;
-      border-radius: 5px;
-      background: linear-gradient(blue, green, orange);
+   /*margin: -10px;*/
+   border: 2px solid rgb(136, 29, 224);
+   box-sizing: border-box;
+   border-radius: 5px;
+   background: black;
+   /*background: url(https://th.bing.com/th?id=OIP.lSRCv7OeYWihD9DFvkIHawHaHa&w=250&h=250&c=8&rs=1&qlt=90&o=6&dpr=3.8&pid=3.1&rm=2);*/
+   display: grid;
+   grid-template-columns: 2fr 1fr;
+   grid-template-rows: 1.5fr 1fr 1.5fr 1fr;
+   grid-template-areas:
+      "source-select input1"
+      ". button"
+      "target-select input2"
+      "lien lien";
+   gap: 10px
+}
+
+
+
+#source-language,
+#target-language {
+   width: 75px;
+   border: 3px solid rgb(136, 29, 224);
+   border-radius: 25px;
+   background: rgb(252, 243, 226);
+}
+
+#target {
+   grid-area: target-select;
+}
+
+#source {
+   grid-area: source-select;
+}
+
+label {
+   color: white;
+   width: 100%;
 }
 
 #inputTranslate {
-   border: 3px solid red;
-   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+   grid-area: input1;
+   border: 3px solid rgb(136, 29, 224);
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
+   border-radius: 25px;
+   background: rgb(252, 243, 226);
 }
 
-#buttonTranslate{
-border-radius: 20px;
+#buttonTranslate {
+   grid-area: button;
+   background-image: linear-gradient(225deg, #27d86c 0%, #26caf8 50%, #c625d0 100%);
+   border: 0;
+   border-radius: 20px;
    cursor: pointer;
-   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
+   width: 90%;
+   justify-self: center;
+   height: 30px;
 }
 
 #buttonTranslate:hover,
-#googleTranslate:hover{
-   background: gray;
-   color: aliceblue;
+#googleTranslate:hover {
+   background-image: linear-gradient(225deg, #c625d0 0%, #26caf8 50%, #27d86c 100%);
+   background-image: linear-gradient(225deg, 0%, #26caf8 50%, #c625d0 100%);
+   color: black;
+   font-size: 1em;
 }
 
-#translatedText{
-   border:3px solid rgb(14, 198, 106);
-   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+#translatedText {
+   grid-area: input2;
+   border: 3px solid rgb(136, 29, 224);
+   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
+   border-radius: 25px;
+   background: rgb(252, 243, 226);
 }
 
-#googleTranslate{
-border-radius: 20px;
+#googleTranslate {
+   grid-area: lien;
+   border: 0;
+   border-radius: 20px;
    cursor: pointer;
+   background-image: linear-gradient(225deg, #27d86c 0%, #26caf8 50%, #c625d0 100%);
    box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
+}
+
+
+#buttonTranslate {
+   animation: shockwaveJump 3s ease-out infinite;
+
+   &:after {
+      @include afterBg;
+      animation: shockwave 1s .65s ease-out infinite;
+   }
+
+   &:before {
+      @include afterBg;
+      animation: shockwave 1s .5s ease-out infinite;
+   }
+}
+
+@keyframes shockwaveJump {
+   0% {
+      transform: scale(1);
+   }
+
+   40% {
+      transform: scale(1.08);
+   }
+
+   50% {
+      transform: scale(0.98);
+   }
+
+   55% {
+      transform: scale(1.02);
+   }
+
+   60% {
+      transform: scale(0.98);
+   }
+
+   100% {
+      transform: scale(1);
+   }
+}
+
+@keyframes shockwave {
+   0% {
+      transform: scale(1);
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.15), inset 0 0 1px rgba(0, 0, 0, 0.15);
+   }
+
+   95% {
+      box-shadow: 0 0 50px rgba(0, 0, 0, 0), inset 0 0 30px rgba(0, 0, 0, 0);
+   }
+
+   100% {
+      transform: scale(2.25);
+
+   }
 }
