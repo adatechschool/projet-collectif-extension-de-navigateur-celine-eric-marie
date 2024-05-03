@@ -1,3 +1,6 @@
+let currentSelection = ""; //Variable globale pour stocker le texte selectionné dans la page web
+
+//fonction pour traduire une string
 async function translateSelectedText(text, source = "auto", target = "fr") {
    try {
       const res = await fetch("http://localhost:5000/translate", {
@@ -18,16 +21,40 @@ async function translateSelectedText(text, source = "auto", target = "fr") {
 
       const data = await res.json();
       const translatedText = data.translatedText;
-      console.log("appel fonction traduction", translatedText);
+      return translatedText;
    } catch (error) {
       console.error("Une erreur est survenue:", error.message);
    }
 }
 
-chrome.contextMenus.create({
-   id: "1",
-   title: "test",
-   contexts: ["selection"],
+//Ecouter le message envoyé par content
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
+   //Si on reçoit le texte selectionné dans la page web
+   if (message.type === "selectedText") {
+      //on stocke le texte dans la variable currentSelection
+      currentSelection = message.text;
+      console.log("2 selection reçu : ", currentSelection);
+   }
 });
 
 
+//ajoute l'option dans le menu de contexte Chrome
+chrome.contextMenus.create({
+   id: "translateOption",
+   title: "Traduire",
+   contexts: ["selection"],
+});
+
+//fonction qui se déclenche dès qu'on clique sur l'option dans le menu
+chrome.contextMenus.onClicked.addListener(async function (info, tab) {
+   if (info.menuItemId === "translateOption") {
+      const translatedText = await translateSelectedText(currentSelection); //traduit le texte
+      console.log("3 Traduction : ", translatedText);
+
+      //on envoie le texte traduit au script content
+      chrome.tabs.sendMessage(tab.id, {
+         type: "translation",
+         translatedText: translatedText
+      });
+   }
+});

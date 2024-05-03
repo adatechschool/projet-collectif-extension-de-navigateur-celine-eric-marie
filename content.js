@@ -1,35 +1,22 @@
-/* async function translateText(text, source = "auto", target = "fr") {
-   try {
-      const res = await fetch("http://localhost:5000/translate", {
-         method: "POST",
-         body: JSON.stringify({
-            q: text,
-            source: source,
-            target: target,
-            format: "text",
-            api_key: "",
-         }),
-         headers: { "Content-Type": "application/json" },
-      });
+// Fonction pour envoyer le texte sélectionné au script d'arrière-plan
+function sendSelectedTextToBackground(selectedText) {
+   console.log("1 Text sélectionné : ", selectedText);
+   chrome.runtime.sendMessage({
+      type: "selectedText",
+      text: selectedText,
+   });
+}
 
-      if (!res.ok) {
-         throw new Error("La réponse du réseau n'a pas été correcte");
-      }
-
-      const data = await res.json();
-      const translatedText = data.translatedText;
-      console.log(translatedText);
-   } catch (error) {
-      console.error("Une erreur est survenue:", error.message);
-   }
-} */
-
+// Écouteur pour capturer le texte sélectionné
 document.body.addEventListener("mouseup", () => {
-   let selectedText = window.getSelection().toString();
-   if (selectedText !== "") {
-      chrome.runtime.sendMessage(
-         { type: "selectedText", text: selectedText },
-         (response) => {console.log(response)}
-      );
-   }
+   const selectedText = window.getSelection().toString();
+   sendSelectedTextToBackground(selectedText);
 });
+
+//Ecouteur de message qui vient du service worker
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+   if (message.type === "translation") {
+      //on reçoit le texte traduit
+      console.log("4 Texte traduit reçu : ", message.translatedText);
+   }
+})
