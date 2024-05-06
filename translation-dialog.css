@@ -6,7 +6,19 @@ dialog {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   background-color: white;
+   background-color: rgb(230, 207, 207);
    z-index: 9999;
    overflow-y: auto;
+   border: 2px solid black;
+}
+.paragraphe{
+   color: black;
+   
+}
+
+.buttonClose{
+   border:2px solid black;
+   color: black;
+   border-radius: 15px;
+   cursor: pointer;
 }

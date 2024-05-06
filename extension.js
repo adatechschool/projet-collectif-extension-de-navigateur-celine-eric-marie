@@ -53,19 +53,6 @@ buttonTranslate.addEventListener("click", function () {
    translateText(ToTranslateInput.value, sourceLanguage, targetLanguage);
 });
 
-/*
-// sélection de langue
-const languageDropdown = document.getElementById("language");
-languageDropdown.addEventListener("change", function () {
-   // Mettre à jour la valeur de la variable task
-   task = languageDropdown.value;
-});
-
-const languageTarget = document.getElementById("target-language");
-languageTarget.addEventListener("change", function () {
-   // Mettre à jour la valeur de la variable target
-   target = languageTarget.value;
-}); */
 
 // Ajout d'un écouteur d'événement pour le clic sur le bouton de recherche Google
 document.getElementById("googleTranslate").addEventListener("click", function (e) {
