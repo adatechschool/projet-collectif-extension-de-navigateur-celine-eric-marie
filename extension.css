@@ -26,8 +26,6 @@ body {
    gap: 10px
 }
 
-
-
 #source-language,
 #target-language {
    width: 75px;
@@ -60,7 +58,11 @@ label {
    box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
    border-radius: 25px;
    background: rgb(252, 243, 226);
+<<<<<<< HEAD
 >>>>>>> c55f1468fc70947784187ae3904f43e96c3cc0ea
+=======
+   padding-left: 20px;
+>>>>>>> c4a5773f16b2c8dbb2be1b46bb656292bdb870ff
 }
 
 
@@ -96,7 +98,11 @@ label {
    box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
    border-radius: 25px;
    background: rgb(252, 243, 226);
+<<<<<<< HEAD
 >>>>>>> c55f1468fc70947784187ae3904f43e96c3cc0ea
+=======
+   padding-left: 20px;
+>>>>>>> c4a5773f16b2c8dbb2be1b46bb656292bdb870ff
 }
 
 #googleTranslate {

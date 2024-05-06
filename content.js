@@ -24,8 +24,15 @@ function displayTranslationModal(translation) {
       translationText = document.createElement("p");
       translationDialog.setAttribute("id", "translation-dialog");
       translationText.setAttribute("id", "translation-text");
+      const closeForm = document.createElement("form")
+      const closeButton = document.createElement("button")
+      closeButton.append("close")
 
-      translationDialog.append(translationText);
+      closeForm.setAttribute("method", "dialog")
+      closeForm.append(closeButton)
+
+
+      translationDialog.append(translationText, closeForm);
       document.body.append(translationDialog);
       displayTranslationModal(translation);
    } else {
