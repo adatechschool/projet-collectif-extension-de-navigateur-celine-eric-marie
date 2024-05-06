@@ -1,5 +1,6 @@
 let task = "auto"; // Définir une valeur par défaut pour la langue source
 
+
 async function translateText(text, source = "auto", target = "fr") {
    try {
 
