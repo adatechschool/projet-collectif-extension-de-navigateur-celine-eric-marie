@@ -7,6 +7,7 @@ function sendSelectedTextToBackground(selectedText) {
    });
 }
 
+
 // Écouteur pour capturer le texte sélectionné
 document.body.addEventListener("mouseup", () => {
    const selectedText = window.getSelection().toString();
@@ -20,3 +21,4 @@ chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
       console.log("4 Texte traduit reçu : ", message.translatedText);
    }
 })
+
