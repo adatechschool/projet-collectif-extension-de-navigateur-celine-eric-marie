@@ -37,17 +37,45 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
    }
 });
 
+/******************************************************************************************************************************/
 
-//ajoute l'option dans le menu de contexte Chrome
-chrome.contextMenus.create({
-   id: "translateOption",
-   title: "Traduire",
-   contexts: ["selection"],
+let activeTabId = null;
+let menuItemId = null;
+
+// Fonction pour créer ou mettre à jour l'option de menu contextuel
+function createOrUpdateContextMenu() {
+   if (activeTabId !== null) {
+      if (menuItemId === null) {
+         // Créer l'option de menu contextuel pour l'onglet actif
+         menuItemId = "translateOption_" + activeTabId;
+         chrome.contextMenus.create({
+            id: menuItemId,
+            title: "Traduire",
+            contexts: ["selection"],
+         });
+      } else {
+         // Mettre à jour l'option de menu contextuel pour l'onglet actif
+         chrome.contextMenus.update(menuItemId, {
+            title: "Traduire",
+            contexts: ["selection"],
+         });
+      }
+   }
+}
+
+// Écouter les changements d'onglet
+chrome.tabs.onActivated.addListener(function (activeInfo) {
+   activeTabId = activeInfo.tabId;
+   // Mettre à jour l'option de menu contextuel pour l'onglet actif
+   createOrUpdateContextMenu();
 });
+
+
+/*******************************************************************************************************************************************/
 
 //fonction qui se déclenche dès qu'on clique sur l'option dans le menu
 chrome.contextMenus.onClicked.addListener(async function (info, tab) {
-   if (info.menuItemId === "translateOption") {
+   if (info.menuItemId === menuItemId) {
       const translatedText = await translateSelectedText(currentSelection); //traduit le texte
       console.log("3 Traduction : ", translatedText);
 
