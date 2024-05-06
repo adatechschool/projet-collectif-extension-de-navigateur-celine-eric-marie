@@ -1,4 +1,16 @@
 let currentSelection = ""; //Variable globale pour stocker le texte selectionné dans la page web
+const allLanguages = [
+   {
+      code: "fr",
+      title: "Français",
+      menuItemId:null
+   },
+   {
+      code: "en",
+      title:"Anglais",
+      menuItemId: null
+   }
+]
 
 //fonction pour traduire une string
 async function translateSelectedText(text, source = "auto", target = "fr") {
@@ -39,33 +51,32 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
 
 /******************************************************************************************************************************/
 
-let activeTabId = null;
-let menuItemId = null;
 
 // Fonction pour créer ou mettre à jour l'option de menu contextuel
 function createOrUpdateContextMenu() {
-   if (activeTabId !== null) {
-      if (menuItemId === null) {
+   allLanguages.forEach((language) => {
+      if (language.menuItemId === null) {
          // Créer l'option de menu contextuel pour l'onglet actif
-         menuItemId = "translateOption_" + activeTabId;
+        language.menuItemId = "translateOption_"+ language.code;
          chrome.contextMenus.create({
-            id: menuItemId,
-            title: "Traduire",
+            id: language.menuItemId,
+            title: language.title,
             contexts: ["selection"],
          });
       } else {
          // Mettre à jour l'option de menu contextuel pour l'onglet actif
-         chrome.contextMenus.update(menuItemId, {
-            title: "Traduire",
+         chrome.contextMenus.update(language.menuItemId, {
+            title: language.title,
             contexts: ["selection"],
          });
       }
-   }
+ }) 
+     
+   
 }
 
 // Écouter les changements d'onglet
 chrome.tabs.onActivated.addListener(function (activeInfo) {
-   activeTabId = activeInfo.tabId;
    // Mettre à jour l'option de menu contextuel pour l'onglet actif
    createOrUpdateContextMenu();
 });
@@ -75,8 +86,11 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 
 //fonction qui se déclenche dès qu'on clique sur l'option dans le menu
 chrome.contextMenus.onClicked.addListener(async function (info, tab) {
-   if (info.menuItemId === menuItemId) {
-      const translatedText = await translateSelectedText(currentSelection); //traduit le texte
+   const targetLanguage = allLanguages.find((language) => info.menuItemId === language.menuItemId)
+   if (targetLanguage) {
+      const targetCode = targetLanguage.code
+      
+      const translatedText = await translateSelectedText(currentSelection,"auto",targetCode); //traduit le texte
       console.log("3 Traduction : ", translatedText);
 
       //on envoie le texte traduit au script content
