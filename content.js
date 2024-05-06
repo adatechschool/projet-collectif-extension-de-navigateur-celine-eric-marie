@@ -48,9 +48,5 @@ chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
       console.log("4 Texte traduit reçu : ", message.translatedText);
       displayTranslationModal(message.translatedText);
    }
-<<<<<<< HEAD
 })
 
-=======
-});
->>>>>>> dbe6a2ba17e5fbc77832da3ca226ae93f8f61b2b
