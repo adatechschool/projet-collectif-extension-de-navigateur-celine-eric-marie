@@ -14,11 +14,43 @@ document.body.addEventListener("mouseup", () => {
    sendSelectedTextToBackground(selectedText);
 });
 
+//Fonction pour afficher le texte dans une balise <dialog>
+function displayTranslationModal(translation) {
+   let translationDialog = document.getElementById("translation-dialog");
+   let translationText = document.getElementById("translation-text");
+
+   if (!translationDialog) {
+      translationDialog = document.createElement("dialog");
+      translationText = document.createElement("p");
+      translationDialog.setAttribute("id", "translation-dialog");
+      translationText.setAttribute("id", "translation-text");
+
+      translationDialog.append(translationText);
+      document.body.append(translationDialog);
+      displayTranslationModal(translation);
+   } else {
+      translationText.textContent = "";
+      //on ajoute chaque paragraphe en transformant les "\n" en <br>
+      const translationArray = translation.split("\n");
+      translationArray.forEach((translationPiece) => {
+         const linebreak = document.createElement("br");
+         translationText.append(translationPiece);
+         translationText.append(linebreak);
+      });
+      translationDialog.setAttribute("open", "");
+   }
+}
+
 //Ecouteur de message qui vient du service worker
-chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
+chrome.runtime.onMessage.addListener(function (message, sender, sendResponse) {
    if (message.type === "translation") {
       //on reçoit le texte traduit
       console.log("4 Texte traduit reçu : ", message.translatedText);
+      displayTranslationModal(message.translatedText);
    }
+<<<<<<< HEAD
 })
 
+=======
+});
+>>>>>>> dbe6a2ba17e5fbc77832da3ca226ae93f8f61b2b
