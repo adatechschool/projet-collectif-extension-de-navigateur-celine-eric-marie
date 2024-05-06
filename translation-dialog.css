@@ -1,0 +1,12 @@
+dialog {
+   min-width: 70vw;
+   max-width: 95vw;
+   max-height: 95vh;
+   position: fixed;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   background-color: white;
+   z-index: 9999;
+   overflow-y: auto;
+}
