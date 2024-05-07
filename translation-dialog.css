@@ -6,11 +6,16 @@ dialog {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   background-color: rgb(202, 215, 234);
+   background-color: rgb(117, 117, 237);
    z-index: 9999;
    overflow-y: auto;
    border: 2px solid black;
 }
+
+dialog[open]{
+   animation: vanishIn 1s;
+ }
+
 .paragraphe{
    color: black;
    
@@ -21,29 +26,30 @@ dialog {
    color:black;
    border-radius: 15px;
    cursor: pointer;
+   width: 25%;
+   height: 40px;
+   vertical-align: middle;
+   box-shadow:8px 3px 3px black
 }
+
 .buttonClose:hover{
-   background-color: rgb(27, 27, 225);
+   background-color: rgb(119, 119, 209);
 }
  
  @keyframes vanishIn {
    0% {
      opacity: 0;
-     transform-origin: 50% 50%;
-     transform: scale(2, 2);
+     /* transform: scale(2, 2); */
      filter: blur(90px);
    }
    100% {
      opacity: 1;
-     transform-origin: 50% 50%;
-     transform: scale(1, 1);
+     /* transform: scale(1, 1); */
      filter: blur(0px);
    }
  }
 
- dialog[open]{
-   animation-name: vanishIn;
- }
+
  
  
  
