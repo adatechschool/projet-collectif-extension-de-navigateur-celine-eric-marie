@@ -24,7 +24,6 @@ function displayTranslationModal(translation) {
       translationText.classList.add("paragraphe")
       translationDialog.setAttribute("id", "translation-dialog");
       translationText.setAttribute("id", "translation-text");
-      
       const closeForm = document.createElement("form")
       const closeButton = document.createElement("button")
       closeButton.classList.add("buttonClose")
