@@ -1,0 +1,18 @@
+{
+    "manifest_version": 3,
+    "name": "Traduction Instantanée",
+    "version": "1.0",
+    "description": "Fournit des traductions instantanées de texte en ligne dans plusieurs langues.",
+    "permissions": ["activeTab", "storage", "*//api-free.deepl.com/v2/*"],
+    "browser_action": {
+      "default_popup": "popup.html",
+      "default_icon": "icon.png"
+    },
+    "icons": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    },
+    "content_security_policy": "script-src 'self' 'unsafe-eval'; object-src 'self'"
+  }
+  
