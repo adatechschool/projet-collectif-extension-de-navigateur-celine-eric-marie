@@ -16,8 +16,8 @@ dialog {
    
 }
 
-.buttonClose{
-   border:2px solid black;
+.buttonClose {
+   border: 2px solid black;
    color:black;
    border-radius: 15px;
    cursor: pointer;
