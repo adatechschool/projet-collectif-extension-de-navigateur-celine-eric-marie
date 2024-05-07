@@ -1,4 +1,4 @@
-dialog {
+#translation-dialog {
    min-width: 70vw;
    max-width: 95vw;
    max-height: 95vh;
@@ -6,64 +6,59 @@ dialog {
    top: 50%;
    left: 50%;
    transform: translate(-50%, -50%);
-   background-color: rgb(117, 117, 237);
+   background: linear-gradient(59deg, rgba(184, 152, 221, 1) 17%, rgba(239, 239, 244, 1) 50%, rgba(218, 151, 230, 1) 100%);
    z-index: 9999;
    overflow-y: auto;
    border: 2px solid black;
+   font-size: 15px;
+   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+   border-radius: 15px;
+   
+}
+#translation-dialog form {
+   position: sticky;
+   bottom: 0;
+}
+dialog[open] {
+   animation: vanishIn 1s;
 }
 
-dialog[open]{
-   animation: vanishIn 1s;
- }
-
-.paragraphe{
+.paragraphe {
    color: black;
-   
+
 }
 
 .buttonClose {
-   border: 2px solid black;
-   color:black;
+   border: 1px solid rgb(0, 0, 0);
+   background-image: linear-gradient(to bottom, #b37be4af, #c966a1b5);
+   color: rgb(255, 252, 252);
    border-radius: 15px;
    cursor: pointer;
    width: 25%;
    height: 40px;
    vertical-align: middle;
-   box-shadow:8px 3px 3px black
+   box-shadow: 5px 3px 3px rgb(83, 80, 80);
+   font-weight: 500;
+   padding: 0;
+
 }
 
-.buttonClose:hover{
-   background-color: rgb(119, 119, 209);
+.buttonClose:hover {
+   background-image: linear-gradient(to bottom, #9943e5af, #ed51afb5);
+   transform: scale(1.1);
+   border: none;
 }
- 
- @keyframes vanishIn {
+
+@keyframes vanishIn {
    0% {
-     opacity: 0;
-     /* transform: scale(2, 2); */
-     filter: blur(90px);
+      opacity: 0;
+      /* transform: scale(2, 2); */
+      filter: blur(90px);
    }
+
    100% {
-     opacity: 1;
-     /* transform: scale(1, 1); */
-     filter: blur(0px);
+      opacity: 1;
+      /* transform: scale(1, 1); */
+      filter: blur(0px);
    }
- }
-
-
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+}

@@ -28,7 +28,7 @@ function displayTranslationModal(translation) {
       const closeForm = document.createElement("form")
       const closeButton = document.createElement("button")
       closeButton.classList.add("buttonClose")
-      closeButton.append("close")
+      closeButton.append("FERMER")
 
       closeForm.setAttribute("method", "dialog")
       closeForm.append(closeButton)

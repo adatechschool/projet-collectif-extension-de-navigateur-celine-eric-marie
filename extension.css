@@ -50,22 +50,11 @@ label {
 #inputTranslate {
    grid-area: input1;
    border: 3px solid rgb(136, 29, 224);
-<<<<<<< HEAD
-   border-radius: 10px;
-   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
-   
-=======
    box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
    border-radius: 25px;
    background: rgb(252, 243, 226);
-<<<<<<< HEAD
->>>>>>> c55f1468fc70947784187ae3904f43e96c3cc0ea
-=======
    padding-left: 20px;
->>>>>>> c4a5773f16b2c8dbb2be1b46bb656292bdb870ff
 }
-
-
 
 #buttonTranslate {
    grid-area: button;
@@ -90,34 +79,18 @@ label {
 #translatedText {
    grid-area: input2;
    border: 3px solid rgb(136, 29, 224);
-<<<<<<< HEAD
-   border-radius: 10px;
-   box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
-   
-=======
    box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%);
    border-radius: 25px;
    background: rgb(252, 243, 226);
-<<<<<<< HEAD
->>>>>>> c55f1468fc70947784187ae3904f43e96c3cc0ea
-=======
    padding-left: 20px;
->>>>>>> c4a5773f16b2c8dbb2be1b46bb656292bdb870ff
 }
 
 #googleTranslate {
    grid-area: lien;
-<<<<<<< HEAD
-   border: 3px solid rgb(7, 2, 11);
-   border-radius: 20px;
-   cursor: pointer;
-   background-color: rgb(124, 209, 240);
-=======
    border: 0;
    border-radius: 20px;
    cursor: pointer;
    background-image: linear-gradient(225deg, #27d86c 0%, #26caf8 50%, #c625d0 100%);
->>>>>>> c55f1468fc70947784187ae3904f43e96c3cc0ea
    box-shadow: 8px 6px 2px 3px rgb(13 13 13 / 25%)
 }
 
