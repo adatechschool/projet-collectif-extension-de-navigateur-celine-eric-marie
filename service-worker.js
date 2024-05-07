@@ -73,6 +73,7 @@ chrome.runtime.onInstalled.addListener(async function () {
    const allLanguagesData = await fetch("http://localhost:5000/languages");
    allLanguages = await allLanguagesData.json();
    allLanguages.forEach(oneLanguage => oneLanguage.menuItemId = null);
+   allLanguages.sort((a, b) => a.name.localeCompare(b.name));
    allNames = allLanguages.map(oneLanguage => ({[oneLanguage.code]: oneLanguage.name}));
 });
 
