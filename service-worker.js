@@ -69,21 +69,25 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
    createOrUpdateContextMenu();
 });
 
-chrome.runtime.onInstalled.addListener(async function () {
+chrome.runtime.onStartup.addListener(async function () {
    const allLanguagesData = await fetch("http://localhost:5000/languages");
    allLanguages = await allLanguagesData.json();
    allLanguages.forEach(oneLanguage => oneLanguage.menuItemId = null);
    allLanguages.sort((a, b) => a.name.localeCompare(b.name));
    allNames = allLanguages.map(oneLanguage => ({[oneLanguage.code]: oneLanguage.name}));
+   createOrUpdateContextMenu();
 });
 
 /*******************************************************************************************************************************************/
 
 //fonction qui se déclenche dès qu'on clique sur l'option dans le menu
 chrome.contextMenus.onClicked.addListener(async function (info, tab) {
+   console.log("allLanguages =", allLanguages);
+   console.log("menu cliqué, info.menuItemId =", info.menuItemId);
    const targetLanguage = allLanguages.find(
       (language) => info.menuItemId === language.menuItemId
    );
+   console.log("langage :", targetLanguage);
    if (targetLanguage) {
       const targetCode = targetLanguage.code;
 
