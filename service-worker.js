@@ -1,11 +1,10 @@
 let currentSelection = ""; //Variable globale pour stocker le texte selectionné dans la page web
 let allLanguages = [];
-let allNames = []
+let allNames = [];
 
 //fonction pour traduire une string
 async function translateSelectedText(text, source = "auto", target = "fr") {
    try {
-      console.log(allNames)
       const res = await fetch("http://localhost:5000/translate", {
          method: "POST",
          body: JSON.stringify({
@@ -72,17 +71,21 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
 chrome.runtime.onStartup.addListener(async function () {
    const allLanguagesData = await fetch("http://localhost:5000/languages");
    allLanguages = await allLanguagesData.json();
-   allLanguages.forEach(oneLanguage => oneLanguage.menuItemId = null);
+   allLanguages.forEach((oneLanguage) => (oneLanguage.menuItemId = null));
    allLanguages.sort((a, b) => a.name.localeCompare(b.name));
-   allNames = allLanguages.map(oneLanguage => ({[oneLanguage.code]: oneLanguage.name}));
-   createOrUpdateContextMenu();
+   allNames = allLanguages.map((oneLanguage) => ({
+      [oneLanguage.code]: oneLanguage.name,
+   }));
+   console.log("allLanguages = ", allLanguages);
+   chrome.contextMenus.removeAll(function () {
+      createOrUpdateContextMenu();
+   });
 });
 
 /*******************************************************************************************************************************************/
 
 //fonction qui se déclenche dès qu'on clique sur l'option dans le menu
 chrome.contextMenus.onClicked.addListener(async function (info, tab) {
-   console.log("allLanguages =", allLanguages);
    console.log("menu cliqué, info.menuItemId =", info.menuItemId);
    const targetLanguage = allLanguages.find(
       (language) => info.menuItemId === language.menuItemId
